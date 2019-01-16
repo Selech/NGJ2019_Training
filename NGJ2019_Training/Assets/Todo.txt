@@ -1,0 +1,25 @@
+﻿game controller
+- spawner klodser
+- trækker klodser nedad
+- styrer hvilken klods der kan bevæges
+- power-ups
+- score
+- miljø (vind/vejr)
+
+
+player-controller
+- styrer klodser
+- benyt power-ups
+
+
+prefabs
+- opret klodser
+- øen (baggrund)
+- avatars
+
+power-ups
+game modes
+ui ingame
+ui menu
+el musica
+kamera-controller
