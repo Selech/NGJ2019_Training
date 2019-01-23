@@ -314,7 +314,7 @@ PrefabInstance:
     - target: {fileID: 4468215136898339555, guid: 692ff4a7fb8a3034d980f9d1506ca994,
         type: 3}
       propertyPath: m_Name
-      value: PlaceHolderPlatform (1)
+      value: PlaceHolderPlatform
       objectReference: {fileID: 0}
     - target: {fileID: 5509715561785052788, guid: 692ff4a7fb8a3034d980f9d1506ca994,
         type: 3}

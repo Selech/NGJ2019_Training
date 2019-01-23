@@ -12,20 +12,20 @@ public enum PieceType {
 	L = 6
 }
 
-public class SpawnerScript : MonoBehaviour
+public class SpawnerScript : GameControllerCommunicator
 {
 	public List<GameObject> PiecePrefabs;
 	public GameObject NextPiece;
 	public GameObject StartPiece;
 
-	public void Start()
-	{
-		var index = Random.Range(0, PiecePrefabs.Count - 1);
-		StartPiece = PiecePrefabs[index];
-		SpawnNew();
-	}
+    public override void OnGameStart()
+    {
+        var index = Random.Range(0, PiecePrefabs.Count - 1);
+        StartPiece = PiecePrefabs[index];
+        SpawnNew();
+    }
 
-	public GameObject SpawnNew()
+    public GameObject SpawnNew()
 	{
 		if (NextPiece == null)
 			NextPiece = StartPiece;
