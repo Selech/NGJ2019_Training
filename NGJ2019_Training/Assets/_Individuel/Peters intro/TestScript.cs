@@ -49,7 +49,7 @@ public class TestScript : MonoBehaviour
 
 		if (Input.GetKeyDown(KeyCode.S))
 		{
-			spawnerScript.SpawnNew();
+			//spawnerScript.SpawnNew();
 			//transform.RotateAround(transform.position, Vector3.forward, 45);
 			//Physics.gravity = new Vector3(0, 0, 0);
 			//this.GetComponent<Rigidbody>().rotation =

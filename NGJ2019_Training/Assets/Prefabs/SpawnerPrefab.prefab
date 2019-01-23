@@ -53,3 +53,6 @@ MonoBehaviour:
   - {fileID: 2668654044168066526, guid: 164d31d04c315ab49a94d66083bcd551, type: 3}
   NextPiece: {fileID: 0}
   StartPiece: {fileID: 0}
+  Layer:
+    serializedVersion: 2
+    m_Bits: 512

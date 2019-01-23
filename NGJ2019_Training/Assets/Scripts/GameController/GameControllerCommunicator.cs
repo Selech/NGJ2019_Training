@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameControllerCommunicator : MonoBehaviour
 {
-    public virtual void OnGameStart()
+	public virtual void OnGameStart()
     {
         Debug.LogWarning("No behaviour has been defined is this intended?");
     }

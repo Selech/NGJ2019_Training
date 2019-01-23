@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PieceType {
+public enum PieceType
+{
 	I = 0,
 	O = 1,
 	T = 2,
@@ -19,30 +20,26 @@ public class SpawnerScript : GameControllerCommunicator
 	public GameObject StartPiece;
 	private Vector2 CurrentPosition;
 	private Vector2 Size = new Vector2(10, 1);
+	public LayerMask Layer;
 
-<<<<<<< Updated upstream
-    public override void OnGameStart()
-    {
-        var index = Random.Range(0, PiecePrefabs.Count - 1);
-        StartPiece = PiecePrefabs[index];
-        SpawnNew();
-    }
-=======
-	public void Start()
+	void Awake()
 	{
 		var index = Random.Range(0, PiecePrefabs.Count - 1);
-		StartPiece = PiecePrefabs[index];
-		SpawnNew();
+		NextPiece = PiecePrefabs[index];
+	}
+
+	public override void OnGameStart()
+	{
 		StartCoroutine(CheckHighestPoint());
 	}
->>>>>>> Stashed changes
 
-    public GameObject SpawnNew()
+	public GameObject SpawnNew(PlayerController player)
 	{
 		if (NextPiece == null)
 			NextPiece = StartPiece;
 
 		var go = Instantiate(NextPiece, this.transform.position, Quaternion.identity);
+		go.GetComponent<TetrominoScript>().PlayerController = player;
 		var index = Random.Range(0, PiecePrefabs.Count - 1);
 		NextPiece = PiecePrefabs[index];
 
@@ -51,12 +48,15 @@ public class SpawnerScript : GameControllerCommunicator
 
 	public IEnumerator CheckHighestPoint()
 	{
-		CurrentPosition = this.transform.position;
+		while (true)
+		{
+			CurrentPosition = this.transform.position;
+			RaycastHit2D hit = Physics2D.BoxCast(CurrentPosition, Size, 0, new Vector2(0, -1), 20, Layer);
 
-		RaycastHit2D hit = Physics2D.BoxCast(CurrentPosition, Size, 0, new Vector2(0, -1));
-		if (hit)
-			Debug.Log("Hit : " + hit.collider.name);
-		return new WaitForSeconds(1f);
+			this.transform.position = new Vector3(hit.point.x, hit.point.y + 10, 0);
+
+			yield return new WaitForSeconds(1f);
+		}
 	}
 
 	void OnDrawGizmos()
