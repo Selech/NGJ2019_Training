@@ -10,13 +10,16 @@ public class TetrominoScript : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
-
+		this.gameObject.layer = LayerMask.NameToLayer("Default");
 	}
 
-	// Update is called once per frame
 	void Update()
 	{
-
+		if (transform.position.y < -50)
+		{
+			PlayerController.TetrominoLost();
+			Destroy(this.gameObject);
+		}
 	}
 
 	void OnCollisionEnter2D(Collision2D collision)
@@ -24,6 +27,7 @@ public class TetrominoScript : MonoBehaviour
 		if (!HasCollided)
 		{
 			PlayerController.TetrominoCollided();
+			this.gameObject.layer = LayerMask.NameToLayer("Tetromino");
 			HasCollided = true;
 		}
 	}

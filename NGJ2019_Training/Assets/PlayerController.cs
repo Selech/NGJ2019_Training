@@ -28,4 +28,9 @@ public class PlayerController : GameControllerCommunicator
 	{
 		CurrentPiece = Spawner.SpawnNew(this);
 	}
+
+	public void TetrominoLost()
+	{
+		// TODO
+	}
 }

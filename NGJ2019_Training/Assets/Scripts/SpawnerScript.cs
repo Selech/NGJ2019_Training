@@ -53,7 +53,7 @@ public class SpawnerScript : GameControllerCommunicator
 			CurrentPosition = this.transform.position;
 			RaycastHit2D hit = Physics2D.BoxCast(CurrentPosition, Size, 0, new Vector2(0, -1), 20, Layer);
 
-			this.transform.position = new Vector3(hit.point.x, hit.point.y + 10, 0);
+			this.transform.position = new Vector3(this.transform.position.x, hit.point.y + 10, 0);
 
 			yield return new WaitForSeconds(1f);
 		}
