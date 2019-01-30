@@ -19,9 +19,14 @@ public class PlayerController : GameControllerCommunicator
 
 	private int movePieceInterval = 10;
 
+	private float LeftBorder;
+	private float RightBorder;
+
 	void Awake()
 	{
 		Spawner = GetComponentInChildren<SpawnerScript>();
+		LeftBorder = this.transform.position.x - this.GetComponentInChildren<SpriteRenderer>().bounds.size.x;
+		RightBorder = this.transform.position.x + this.GetComponentInChildren<SpriteRenderer>().bounds.size.x;
 	}
 
 	public override void OnGameStart()
@@ -45,7 +50,7 @@ public class PlayerController : GameControllerCommunicator
 			CurrentPiece.transform.Rotate(Vector3.back, 90);
 		}
 
-		if (Input.GetKey(Left))
+		if (Input.GetKey(Left) && CurrentPiece.transform.position.x > LeftBorder)
 		{
 			if (i > movePieceInterval) {
 				CurrentPiece.transform.position += (Vector3.left / 2);
@@ -53,7 +58,7 @@ public class PlayerController : GameControllerCommunicator
 			}
 		}
 
-		if (Input.GetKey(Right))
+		if (Input.GetKey(Right) && CurrentPiece.transform.position.x < RightBorder)
 		{
 			if (i > movePieceInterval) {
 				CurrentPiece.transform.position += (Vector3.right / 2);
@@ -66,12 +71,12 @@ public class PlayerController : GameControllerCommunicator
 			CurrentPiece.transform.position += Vector3.down/5;
 		}
 
-		if (Input.GetKeyDown(LeftDash))
+		if (Input.GetKeyDown(LeftDash) && CurrentPiece.transform.position.x > LeftBorder)
 		{
 			CurrentPiece.transform.position += (Vector3.left);
 		}
 
-		if (Input.GetKeyDown(RightDash))
+		if (Input.GetKeyDown(RightDash) && CurrentPiece.transform.position.x < RightBorder)
 		{
 			CurrentPiece.transform.position += (Vector3.right);
 		}
