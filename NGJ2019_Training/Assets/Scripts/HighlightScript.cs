@@ -7,7 +7,7 @@ public class HighlightScript : MonoBehaviour
 {
 	public TetrominoScript Target;
 	private int width = 1;
-	private int hight = 50;
+	private int hight = 100;
 	private SpriteRenderer spriteRenderer;
 
 	void Awake()
