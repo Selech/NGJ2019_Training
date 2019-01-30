@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,6 +22,9 @@ public class HighlightScript : MonoBehaviour
 		if (Target != null)
 		{
 			UpdateWidth();
+			print("width:" + width);
+			print("rotated:" + IsRotated());
+			print("rotation: " + Target.transform.rotation.eulerAngles.z);
 			this.transform.position = new Vector3(Target.transform.position.x, Target.transform.position.y, this.transform.position.z);
 			this.transform.localScale = new Vector3(width, hight, 1);
 		}
@@ -31,20 +35,32 @@ public class HighlightScript : MonoBehaviour
 		switch (Target.Type)
 		{
 			case TetrominoType.I:
-				//width = Target.transform.rotation.eulerAngles.z == 
+				width = IsRotated() ? 1 : 4;
 				break;
 			case TetrominoType.J:
 			case TetrominoType.L:
+				width = IsRotated() ? 3 : 2;
 				break;
 			case TetrominoType.O:
 				width = 2;
 				break;
 			case TetrominoType.T:
-
+				width = IsRotated() ? 2 : 3;
 				break;
 			case TetrominoType.S:
 			case TetrominoType.Z:
+				width = IsRotated() ? 2 : 3;
 				break;
 		}
+	}
+
+	private bool IsRotated()
+	{
+		var rotation = Math.Abs((int)Target.transform.rotation.eulerAngles.z);
+		if (rotation == 0 || rotation == 180)
+		{
+			return false;
+		}
+		return true;
 	}
 }
