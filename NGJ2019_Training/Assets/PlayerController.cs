@@ -8,6 +8,10 @@ public class PlayerController : GameControllerCommunicator
 
 	private SpawnerScript Spawner;
 
+	private int i;
+
+	private int movePieceInterval = 10;
+
 	void Awake()
 	{
 		Spawner = GetComponentInChildren<SpawnerScript>();
@@ -21,29 +25,38 @@ public class PlayerController : GameControllerCommunicator
 	// Update is called once per frame
 	void Update()
     {
-		if (CurrentPiece != null)
+		i++;
+		if (CurrentPiece == null)
 		{
-			CurrentPiece.transform.position += (Vector3.down * Time.deltaTime) * 4;
+			return;
 		}
+
+		CurrentPiece.transform.position += (Vector3.down * Time.deltaTime) * 4;
 
 		if (Input.GetKeyDown("up"))
 		{
 			CurrentPiece.transform.Rotate(Vector3.back, 90);
 		}
 
-		if (Input.GetKeyDown("left"))
+		if (Input.GetKey("left"))
 		{
-			CurrentPiece.transform.position += (Vector3.left / 2);
+			if (i > movePieceInterval) {
+				CurrentPiece.transform.position += (Vector3.left / 2);
+				i = 0;
+			}
 		}
 
-		if (Input.GetKeyDown("right"))
+		if (Input.GetKey("right"))
 		{
-			CurrentPiece.transform.position += (Vector3.right / 2);
+			if (i > movePieceInterval) {
+				CurrentPiece.transform.position += (Vector3.right / 2);
+				i = 0;
+			}
 		}
 
-		if (Input.GetKeyDown("down"))
+		if (Input.GetKey("down"))
 		{
-			CurrentPiece.transform.position += (Vector3.down);
+			CurrentPiece.transform.position += Vector3.down/5;
 		}
 	}
 
