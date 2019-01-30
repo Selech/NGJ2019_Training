@@ -21,6 +21,11 @@ public class PlayerController : GameControllerCommunicator
 	// Update is called once per frame
 	void Update()
     {
+		if (CurrentPiece != null)
+		{
+			CurrentPiece.transform.position += (Vector3.down * Time.deltaTime) * 4;
+		}
+
 		if (Input.GetKeyDown("up"))
 		{
 			CurrentPiece.transform.Rotate(Vector3.back, 90);
@@ -44,6 +49,7 @@ public class PlayerController : GameControllerCommunicator
 
 	public void TetrominoCollided()
 	{
+		CurrentPiece.transform.GetComponent<Rigidbody2D>().gravityScale = 1f;
 		CurrentPiece = Spawner.SpawnNew(this);
 	}
 

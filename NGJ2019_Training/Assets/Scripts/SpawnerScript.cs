@@ -43,7 +43,7 @@ public class SpawnerScript : GameControllerCommunicator
 		var index = Random.Range(0, PiecePrefabs.Count - 1);
 		NextPiece = PiecePrefabs[index];
 
-		go.transform.GetComponent<Rigidbody2D>().gravityScale = 0.1f;
+		go.transform.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
 		return go;
 	}
 
