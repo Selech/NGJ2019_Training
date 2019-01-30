@@ -21,8 +21,26 @@ public class PlayerController : GameControllerCommunicator
 	// Update is called once per frame
 	void Update()
     {
-        
-    }
+		if (Input.GetKeyDown("up"))
+		{
+			CurrentPiece.transform.Rotate(Vector3.back, 90);
+		}
+
+		if (Input.GetKeyDown("left"))
+		{
+			CurrentPiece.transform.position += (Vector3.left / 2);
+		}
+
+		if (Input.GetKeyDown("right"))
+		{
+			CurrentPiece.transform.position += (Vector3.right / 2);
+		}
+
+		if (Input.GetKeyDown("down"))
+		{
+			CurrentPiece.transform.position += (Vector3.down);
+		}
+	}
 
 	public void TetrominoCollided()
 	{
