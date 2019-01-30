@@ -17,7 +17,21 @@ prefabs
 - øen (baggrund)
 - avatars
 
+
 power-ups
+	hjælp
+	- fjern forrige piece
+	- ekstra ø
+	- gribe fat
+	- no physics
+
+	modstand
+	- speed up for andre
+	- giv en mærkelig klods
+	- lås rotation
+	- auto rotation
+
+
 game modes
 ui ingame
 ui menu
