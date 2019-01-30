@@ -6,6 +6,13 @@ public class PlayerController : GameControllerCommunicator
 {
 	public GameObject CurrentPiece;
 
+	public KeyCode Rotate;
+	public KeyCode Left;
+	public KeyCode Right;
+	public KeyCode Down;
+	public KeyCode LeftDash;
+	public KeyCode RightDash;
+
 	private SpawnerScript Spawner;
 
 	private int i;
@@ -33,12 +40,12 @@ public class PlayerController : GameControllerCommunicator
 
 		CurrentPiece.transform.position += (Vector3.down * Time.deltaTime) * 4;
 
-		if (Input.GetKeyDown("up"))
+		if (Input.GetKeyDown(Rotate))
 		{
 			CurrentPiece.transform.Rotate(Vector3.back, 90);
 		}
 
-		if (Input.GetKey("left"))
+		if (Input.GetKey(Left))
 		{
 			if (i > movePieceInterval) {
 				CurrentPiece.transform.position += (Vector3.left / 2);
@@ -46,7 +53,7 @@ public class PlayerController : GameControllerCommunicator
 			}
 		}
 
-		if (Input.GetKey("right"))
+		if (Input.GetKey(Right))
 		{
 			if (i > movePieceInterval) {
 				CurrentPiece.transform.position += (Vector3.right / 2);
@@ -54,9 +61,19 @@ public class PlayerController : GameControllerCommunicator
 			}
 		}
 
-		if (Input.GetKey("down"))
+		if (Input.GetKey(Down))
 		{
 			CurrentPiece.transform.position += Vector3.down/5;
+		}
+
+		if (Input.GetKeyDown(LeftDash))
+		{
+			CurrentPiece.transform.position += (Vector3.left);
+		}
+
+		if (Input.GetKeyDown(RightDash))
+		{
+			CurrentPiece.transform.position += (Vector3.right);
 		}
 	}
 
