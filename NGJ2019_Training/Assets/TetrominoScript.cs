@@ -2,9 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum TetrominoType
+{
+	I = 0,
+	O = 1,
+	T = 2,
+	S = 3,
+	Z = 4,
+	J = 5,
+	L = 6
+}
+
 public class TetrominoScript : MonoBehaviour
 {
 	private bool HasCollided;
+	public TetrominoType Type;
 	public PlayerController PlayerController;
 
 	// Start is called before the first frame update

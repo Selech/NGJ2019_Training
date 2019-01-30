@@ -2,17 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PieceType
-{
-	I = 0,
-	O = 1,
-	T = 2,
-	S = 3,
-	Z = 4,
-	J = 5,
-	L = 6
-}
-
 public class SpawnerScript : GameControllerCommunicator
 {
 	public List<GameObject> PiecePrefabs;
@@ -21,6 +10,7 @@ public class SpawnerScript : GameControllerCommunicator
 	private Vector2 CurrentPosition;
 	private Vector2 Size = new Vector2(10, 1);
 	public LayerMask Layer;
+	public HighlightScript HighlightScript;
 
 	void Awake()
 	{
@@ -44,6 +34,7 @@ public class SpawnerScript : GameControllerCommunicator
 		NextPiece = PiecePrefabs[index];
 
 		go.transform.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
+		HighlightScript.Target = go.transform;
 		return go;
 	}
 
