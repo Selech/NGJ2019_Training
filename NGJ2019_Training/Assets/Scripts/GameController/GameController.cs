@@ -20,6 +20,17 @@ public class GameController : MonoBehaviour
         
     }
 
+	public void UsePower(GameControllerCommunicator user)
+	{
+		foreach (var item in communicationObjects)
+		{
+			if(item.GetComponent<PlayerController>() != null && item.GetInstanceID() != user.GetInstanceID())
+			{
+				//item.FuckMeUp()
+			}
+		}
+	}
+
 
     private IEnumerator StartGameStartCountDown()
     {
@@ -30,6 +41,7 @@ public class GameController : MonoBehaviour
 
     private void NotifyGameStarted()
     {
+
         print("GAME STARTED");
         foreach (var communicator in communicationObjects)
         {

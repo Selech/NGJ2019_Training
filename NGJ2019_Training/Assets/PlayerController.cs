@@ -16,6 +16,7 @@ public class PlayerController : GameControllerCommunicator
 	public KeyCode Offense;
 
 	private SpawnerScript Spawner;
+	private GameController Controller;
 
 	private int i;
 
@@ -28,6 +29,7 @@ public class PlayerController : GameControllerCommunicator
 
 	void Awake()
 	{
+		Controller = GameObject.FindObjectOfType<GameController>();
 		Spawner = GetComponentInChildren<SpawnerScript>();
 		LeftBorder = this.transform.position.x - this.GetComponentInChildren<SpriteRenderer>().bounds.size.x;
 		RightBorder = this.transform.position.x + this.GetComponentInChildren<SpriteRenderer>().bounds.size.x;
@@ -36,6 +38,11 @@ public class PlayerController : GameControllerCommunicator
 	public override void OnGameStart()
 	{
 		CurrentPiece = Spawner.SpawnNew(this);
+	}
+
+	public void FuckMeUp()
+	{
+		CurrentPiece.transform.localScale *= 2;
 	}
 
 	// Update is called once per frame
@@ -47,58 +54,60 @@ public class PlayerController : GameControllerCommunicator
 			return;
 		}
 
-		CurrentPiece.transform.position += (Vector3.down * Time.deltaTime) * 4;
+		Rigidbody2D rb = CurrentPiece.GetComponent<Rigidbody2D>();
+
+		rb.position += (Vector2.down * Time.deltaTime) * 4;
 
 		if (Input.GetKeyDown(Rotate))
 		{
-			CurrentPiece.transform.Rotate(Vector3.back, 90);
+			rb.rotation -= 90;
 		}
 
-		if (Input.GetKey(Left) && CurrentPiece.transform.position.x > LeftBorder)
+		if (Input.GetKey(Left) && rb.position.x > LeftBorder)
 		{
 			if (i > movePieceInterval) {
-				CurrentPiece.transform.position += (Vector3.left / 2);
+				rb.position += (Vector2.left / 2);
 				i = 0;
 			}
 		}
 
-		if (Input.GetKey(Right) && CurrentPiece.transform.position.x < RightBorder)
+		if (Input.GetKey(Right) && rb.position.x < RightBorder)
 		{
 			if (i > movePieceInterval) {
-				CurrentPiece.transform.position += (Vector3.right / 2);
+				rb.position += (Vector2.right / 2);
 				i = 0;
 			}
 		}
 
 		if (Input.GetKey(Down))
 		{
-			CurrentPiece.transform.position += Vector3.down/5;
+			rb.position += Vector2.down/10;
 		}
 
-		if (Input.GetKeyDown(LeftDash) && CurrentPiece.transform.position.x > LeftBorder)
+		if (Input.GetKeyDown(LeftDash) && rb.position.x > LeftBorder)
 		{
-			CurrentPiece.transform.position += (Vector3.left);
+			rb.position += (Vector2.left);
 		}
 
-		if (Input.GetKeyDown(RightDash) && CurrentPiece.transform.position.x < RightBorder)
+		if (Input.GetKeyDown(RightDash) && rb.position.x < RightBorder)
 		{
-			CurrentPiece.transform.position += (Vector3.right);
+			rb.position += (Vector2.right);
 		}
 
-		if (Input.GetKeyDown(Offense) && HasPower)
+		if (Input.GetKeyDown(Offense))
 		{
-			// Use Offense power
+			Controller.UsePower(this.GetComponent<GameControllerCommunicator>());
 		}
 
-		if (Input.GetKeyDown(Defense) && HasPower)
+		if (Input.GetKeyDown(Defense))
 		{
-			// Use Defense power
+			Controller.UsePower(this.GetComponent<GameControllerCommunicator>());
 		}
 	}
 
 	public void TetrominoCollided()
 	{
-		CurrentPiece.transform.GetComponent<Rigidbody2D>().gravityScale = 1f;
+		CurrentPiece.GetComponent<Rigidbody2D>().gravityScale = 1f;
 		CurrentPiece = Spawner.SpawnNew(this);
 	}
 

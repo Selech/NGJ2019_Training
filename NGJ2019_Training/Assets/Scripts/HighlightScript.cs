@@ -22,9 +22,6 @@ public class HighlightScript : MonoBehaviour
 		if (Target != null)
 		{
 			UpdateWidth();
-			print("width:" + width);
-			print("rotated:" + IsRotated());
-			print("rotation: " + Target.transform.rotation.eulerAngles.z);
 			this.transform.position = new Vector3(Target.transform.position.x, Target.transform.position.y, this.transform.position.z);
 			this.transform.localScale = new Vector3(width, hight, 1);
 		}
