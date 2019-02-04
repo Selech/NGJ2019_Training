@@ -39,7 +39,7 @@ public class HighlightScript : MonoBehaviour
 				break;
 			case TetrominoType.J:
 			case TetrominoType.L:
-				width = IsRotated() ? 3 : 2;
+				width = IsRotated() ? 2 : 3;
 				break;
 			case TetrominoType.O:
 				width = 2;

@@ -12,6 +12,8 @@ public class PlayerController : GameControllerCommunicator
 	public KeyCode Down;
 	public KeyCode LeftDash;
 	public KeyCode RightDash;
+	public KeyCode Defense;
+	public KeyCode Offense;
 
 	private SpawnerScript Spawner;
 
@@ -21,6 +23,8 @@ public class PlayerController : GameControllerCommunicator
 
 	private float LeftBorder;
 	private float RightBorder;
+
+	private bool HasPower;
 
 	void Awake()
 	{
@@ -79,6 +83,16 @@ public class PlayerController : GameControllerCommunicator
 		if (Input.GetKeyDown(RightDash) && CurrentPiece.transform.position.x < RightBorder)
 		{
 			CurrentPiece.transform.position += (Vector3.right);
+		}
+
+		if (Input.GetKeyDown(Offense) && HasPower)
+		{
+			// Use Offense power
+		}
+
+		if (Input.GetKeyDown(Defense) && HasPower)
+		{
+			// Use Defense power
 		}
 	}
 
