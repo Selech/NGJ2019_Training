@@ -8,23 +8,24 @@ public class SpawnerScript : GameControllerCommunicator
 	public GameObject NextPiece;
 	public GameObject StartPiece;
 	private Vector2 CurrentPosition;
-	private Vector2 Size = new Vector2(10, 1);
-	public LayerMask Layer;
 	public HighlightScript HighlightScript;
+	public GameController Controller;
 
 	void Awake()
 	{
+		Controller = GameObject.FindObjectOfType<GameController>();
 		var index = Random.Range(0, PiecePrefabs.Count - 1);
 		NextPiece = PiecePrefabs[index];
 	}
 
 	public override void OnGameStart()
 	{
-		StartCoroutine(CheckHighestPoint());
+		
 	}
 
 	public GameObject SpawnNew(PlayerController player)
 	{
+		this.transform.position = new Vector3(this.transform.position.x, Controller.CurrentHighPoint + 20, this.transform.position.z);
 		if (NextPiece == null)
 			NextPiece = StartPiece;
 
@@ -36,23 +37,5 @@ public class SpawnerScript : GameControllerCommunicator
 		go.transform.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
 		HighlightScript.Target = go.GetComponent<TetrominoScript>();
 		return go;
-	}
-
-	public IEnumerator CheckHighestPoint()
-	{
-		while (true)
-		{
-			CurrentPosition = this.transform.position;
-			RaycastHit2D hit = Physics2D.BoxCast(CurrentPosition, Size, 0, new Vector2(0, -1), 20, Layer);
-
-			this.transform.position = new Vector3(this.transform.position.x, hit.point.y + 20, 0);
-
-			yield return new WaitForSeconds(1f);
-		}
-	}
-
-	void OnDrawGizmos()
-	{
-		Gizmos.DrawWireCube(transform.position + transform.forward * Size.y, Size);
 	}
 }

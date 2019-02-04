@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+	public float CurrentHighPoint;
 
     public int StartTimeCountDownFrom = 2;
     private GameControllerCommunicator[] communicationObjects = new GameControllerCommunicator[0];

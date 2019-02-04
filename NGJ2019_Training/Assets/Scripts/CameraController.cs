@@ -2,33 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+public class CameraController : GameControllerCommunicator
 {
-	public GameObject[] Players;
-	public List<SpawnerScript> Spawners = new List<SpawnerScript>();
+	public GameController Controller;
+	public float HightFloatHighestPoint = 5;
 
-	// Start is called before the first frame update
-	void Start()
+	void Awake()
 	{
-		Players = GameObject.FindGameObjectsWithTag("Player");
-		foreach (var player in Players)
-		{
-			Spawners.Add(player.GetComponentInChildren<SpawnerScript>());
-		}
+		Controller = GameObject.FindObjectOfType<GameController>();
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
 		var position = this.transform.position;
-		foreach (var spawner in Spawners)
+		position = new Vector3(position.x, Controller.CurrentHighPoint + HightFloatHighestPoint, position.z);
+		if (position.y < 10)
 		{
-			if (spawner.transform.position.y > position.y)
-			{
-				position = new Vector3(position.x, spawner.transform.position.y - 10, position.z);
-			}
+			return;
 		}
-
-		this.transform.position = Vector3.MoveTowards(this.transform.position, position, 0.5f * Time.deltaTime);
+		this.transform.position = Vector3.Slerp(this.transform.position, position, 0.15f * Time.deltaTime);
 	}
 }
