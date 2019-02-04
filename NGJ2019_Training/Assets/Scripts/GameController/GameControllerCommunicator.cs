@@ -8,4 +8,9 @@ public class GameControllerCommunicator : MonoBehaviour
     {
         Debug.LogWarning("No behaviour has been defined is this intended?");
     }
+
+	public virtual void FuckMeUp()
+	{
+		Debug.LogWarning("No behaviour has been defined is this intended?");
+	}
 }

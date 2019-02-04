@@ -27,7 +27,7 @@ public class GameController : MonoBehaviour
 		{
 			if(item.GetComponent<PlayerController>() != null && item.GetInstanceID() != user.GetInstanceID())
 			{
-				//item.FuckMeUp()
+				item.FuckMeUp();
 			}
 		}
 	}
