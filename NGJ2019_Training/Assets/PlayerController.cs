@@ -40,9 +40,10 @@ public class PlayerController : GameControllerCommunicator
 		CurrentPiece = Spawner.SpawnNew(this);
 	}
 
-	public void FuckMeUp()
+	public override void FuckMeUp()
 	{
 		CurrentPiece.transform.localScale *= 2;
+		CurrentPiece.GetComponent<Rigidbody2D>().mass *= 2;
 	}
 
 	// Update is called once per frame

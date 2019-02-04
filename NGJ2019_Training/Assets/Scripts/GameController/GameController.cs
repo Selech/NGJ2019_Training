@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+	public float CurrentHighPoint;
 
     public int StartTimeCountDownFrom = 2;
     private GameControllerCommunicator[] communicationObjects = new GameControllerCommunicator[0];
@@ -26,7 +27,7 @@ public class GameController : MonoBehaviour
 		{
 			if(item.GetComponent<PlayerController>() != null && item.GetInstanceID() != user.GetInstanceID())
 			{
-				//item.FuckMeUp()
+				item.FuckMeUp();
 			}
 		}
 	}
