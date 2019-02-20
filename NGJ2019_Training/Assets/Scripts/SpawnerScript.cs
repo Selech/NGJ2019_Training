@@ -14,7 +14,7 @@ public class SpawnerScript : GameControllerCommunicator
 	void Awake()
 	{
 		Controller = GameObject.FindObjectOfType<GameController>();
-		var index = Random.Range(0, PiecePrefabs.Count - 1);
+		var index = Random.Range(0, PiecePrefabs.Count);
 		NextPiece = PiecePrefabs[index];
 	}
 
@@ -34,7 +34,7 @@ public class SpawnerScript : GameControllerCommunicator
 		var index = Random.Range(0, PiecePrefabs.Count - 1);
 		NextPiece = PiecePrefabs[index];
 
-		go.transform.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
+		go.transform.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
 		HighlightScript.Target = go.GetComponent<TetrominoScript>();
 		return go;
 	}

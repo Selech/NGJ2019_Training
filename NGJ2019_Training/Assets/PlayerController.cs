@@ -47,7 +47,7 @@ public class PlayerController : GameControllerCommunicator
 	}
 
 	// Update is called once per frame
-	void Update()
+	void FixedUpdate()
     {
 		i++;
 		if (CurrentPiece == null)
@@ -57,7 +57,7 @@ public class PlayerController : GameControllerCommunicator
 
 		Rigidbody2D rb = CurrentPiece.GetComponent<Rigidbody2D>();
 
-		rb.position += (Vector2.down * Time.deltaTime) * 4;
+		//rb.position += (Vector2.down * Time.deltaTime) * 4;
 
 		if (Input.GetKeyDown(Rotate))
 		{
