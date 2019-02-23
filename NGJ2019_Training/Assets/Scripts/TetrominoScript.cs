@@ -64,6 +64,8 @@ public class TetrominoScript : MonoBehaviour
     {
         if (!HasCollided)
         {
+            Camera.main.GetComponent<CameraController>().ShakeCamera();
+
             var testCollider = collision.collider.bounds;
             testCollider.size = new Vector3(testCollider.size.x * 1f, testCollider.size.y * 1, testCollider.size.z * 1);
             HasCollided = testCollider.Intersects(collision.otherCollider.bounds);
