@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using UnityEngine;
 
 public class HightController : GameControllerCommunicator
 {
 	public Vector3 CurrentPosition;
-	private Vector2 size = new Vector2(50, 1);
+	private Vector2 size = new Vector2(50, 100);
 	public LayerMask Layer;
 	public GameController GameController;
 
@@ -21,10 +22,20 @@ public class HightController : GameControllerCommunicator
 		while (true)
 		{
 			CurrentPosition = this.transform.position;
-			RaycastHit2D hit = Physics2D.BoxCast(CurrentPosition, size, 0, new Vector2(0, -1), 100, Layer);
-			GameController.CurrentHighPoint = hit.point.y;
+			RaycastHit2D[] hits = Physics2D.BoxCastAll(CurrentPosition, size, 0, new Vector2(0, -1), 1, Layer);
+			GameController.CurrentHighPoint = GetHighestPoint(hits);
 			yield return new WaitForSeconds(1f);
 		}
+	}
+
+	private float GetHighestPoint(RaycastHit2D[] hits)
+	{
+		if (hits.Length > 0)
+		{
+			return hits.Max(r => r.point.y);
+		}
+
+		return 0;
 	}
 
 	void OnDrawGizmos()
