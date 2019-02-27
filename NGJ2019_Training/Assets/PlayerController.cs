@@ -20,8 +20,10 @@ public class PlayerController : GameControllerCommunicator
 
     private int i;
     private bool IsFinished = false;
+	public bool BoxInside = false;
+	private int timer;
 
-    private int movePieceInterval = 10;
+	private int movePieceInterval = 10;
 
     private float LeftBorder;
     private float RightBorder;
@@ -49,7 +51,8 @@ public class PlayerController : GameControllerCommunicator
 
     public void PlayerFinished()
     {
-        if (!IsFinished)
+	
+		if (!IsFinished)
         {         //Spawner.NextPiece = null;
             Destroy(CurrentPiece);
             IsFinished = true;
@@ -59,6 +62,21 @@ public class PlayerController : GameControllerCommunicator
 	// Update is called once per frame
 	void FixedUpdate()
     {
+		print(timer);
+		if (BoxInside)
+		{
+			timer++;
+		}
+		else if(IsFinished)
+		{
+			timer = 0;
+			CurrentPiece = Spawner.SpawnNew(this);
+			IsFinished = false;
+		}
+		if (timer > 800)
+		{
+			print("Winner");
+		}
 		i++;
 		if (CurrentPiece == null)
 		{

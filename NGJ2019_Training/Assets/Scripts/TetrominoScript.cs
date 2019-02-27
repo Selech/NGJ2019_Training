@@ -55,7 +55,7 @@ public class TetrominoScript : MonoBehaviour
     {
         if ((rigidbody2d.velocity.magnitude > speed || rigidbody2d.velocity.magnitude < speed) && !HasCollided)
         {
-            print(rigidbody2d.velocity);
+            //print(rigidbody2d.velocity);
             rigidbody2d.velocity = rigidbody2d.velocity.normalized * speed;
         }
     }
