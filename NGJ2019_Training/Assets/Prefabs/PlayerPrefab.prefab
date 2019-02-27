@@ -139,7 +139,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f64ef5475f7c1f94ea042dafbd8819fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Win: {fileID: 6375587611037881868, guid: af9259ab8592a3a4aa00c3b97556f8e7, type: 3}
   CurrentPiece: {fileID: 0}
+  Rotate: 0
+  Left: 0
+  Right: 0
+  Down: 0
+  LeftDash: 0
+  RightDash: 0
+  Defense: 0
+  Offense: 0
+  BoxInside: 0
 --- !u!1001 &8682896745495180067
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -4,79 +4,84 @@ using UnityEngine;
 
 public class PlayerController : GameControllerCommunicator
 {
-    public GameObject CurrentPiece;
+	public ParticleSystem Win;
 
-    public KeyCode Rotate;
-    public KeyCode Left;
-    public KeyCode Right;
-    public KeyCode Down;
-    public KeyCode LeftDash;
-    public KeyCode RightDash;
-    public KeyCode Defense;
-    public KeyCode Offense;
+	public GameObject CurrentPiece;
 
-    private SpawnerScript Spawner;
-    private GameController Controller;
+	public KeyCode Rotate;
+	public KeyCode Left;
+	public KeyCode Right;
+	public KeyCode Down;
+	public KeyCode LeftDash;
+	public KeyCode RightDash;
+	public KeyCode Defense;
+	public KeyCode Offense;
 
-    private int i;
-    private bool IsFinished = false;
+	private SpawnerScript Spawner;
+	private GameController Controller;
+
+	private int i;
+	private bool IsFinished = false;
 	public bool BoxInside = false;
 	private int timer;
 
 	private int movePieceInterval = 10;
 
-    private float LeftBorder;
-    private float RightBorder;
+	private float LeftBorder;
+	private float RightBorder;
 
-    private bool HasPower;
+	private bool HasPower;
 
-    void Awake()
-    {
-        Controller = GameObject.FindObjectOfType<GameController>();
-        Spawner = GetComponentInChildren<SpawnerScript>();
-        LeftBorder = this.transform.position.x - this.GetComponentInChildren<SpriteRenderer>().bounds.size.x;
-        RightBorder = this.transform.position.x + this.GetComponentInChildren<SpriteRenderer>().bounds.size.x;
-    }
+	void Awake()
+	{
+		Controller = GameObject.FindObjectOfType<GameController>();
+		Spawner = GetComponentInChildren<SpawnerScript>();
+		LeftBorder = this.transform.position.x - this.GetComponentInChildren<SpriteRenderer>().bounds.size.x;
+		RightBorder = this.transform.position.x + this.GetComponentInChildren<SpriteRenderer>().bounds.size.x;
+	}
 
-    public override void OnGameStart()
-    {
-        CurrentPiece = Spawner.SpawnNew(this);
-    }
+	public override void OnGameStart()
+	{
+		CurrentPiece = Spawner.SpawnNew(this);
+	}
 
-    public override void FuckMeUp()
-    {
-        CurrentPiece.transform.localScale *= 2;
-        CurrentPiece.GetComponent<Rigidbody2D>().mass *= 2;
-    }
+	public override void FuckMeUp()
+	{
+		CurrentPiece.transform.localScale *= 2;
+		CurrentPiece.GetComponent<Rigidbody2D>().mass *= 2;
+	}
 
-    public void PlayerFinished()
-    {
-	
+	public void PlayerFinished()
+	{
+
 		if (!IsFinished)
-        {         //Spawner.NextPiece = null;
-            Destroy(CurrentPiece);
-            IsFinished = true;
-        }
-    }
+		{         //Spawner.NextPiece = null;
+			Destroy(CurrentPiece);
+			IsFinished = true;
+		}
+	}
 
 	// Update is called once per frame
 	void FixedUpdate()
-    {
-		print(timer);
+	{
+		if (HasWon) return;
+
 		if (BoxInside)
 		{
 			timer++;
 		}
-		else if(IsFinished)
+		else if (IsFinished)
 		{
 			timer = 0;
 			CurrentPiece = Spawner.SpawnNew(this);
 			IsFinished = false;
 		}
-		if (timer > 800)
+		if (timer > 200)
 		{
-			print("Winner");
+			Instantiate(Win, new Vector3(this.transform.position.x, Controller.CurrentHighPoint), Quaternion.identity);
+			HasWon = true;
 		}
+
 		i++;
 		if (CurrentPiece == null)
 		{
@@ -94,7 +99,8 @@ public class PlayerController : GameControllerCommunicator
 
 		if (Input.GetKey(Left) && rb.position.x > LeftBorder)
 		{
-			if (i > movePieceInterval) {
+			if (i > movePieceInterval)
+			{
 				rb.position += (Vector2.left / 2);
 				i = 0;
 			}
@@ -102,7 +108,8 @@ public class PlayerController : GameControllerCommunicator
 
 		if (Input.GetKey(Right) && rb.position.x < RightBorder)
 		{
-			if (i > movePieceInterval) {
+			if (i > movePieceInterval)
+			{
 				rb.position += (Vector2.right / 2);
 				i = 0;
 			}
@@ -110,7 +117,7 @@ public class PlayerController : GameControllerCommunicator
 
 		if (Input.GetKey(Down))
 		{
-			rb.position += Vector2.down/10;
+			rb.position += Vector2.down / 10;
 		}
 
 		if (Input.GetKeyDown(LeftDash) && rb.position.x > LeftBorder)
@@ -133,6 +140,8 @@ public class PlayerController : GameControllerCommunicator
 			Controller.UsePower(this.GetComponent<GameControllerCommunicator>());
 		}
 	}
+
+	public bool HasWon { get; set; }
 
 	public void TetrominoCollided()
 	{
