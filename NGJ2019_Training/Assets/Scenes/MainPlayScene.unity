@@ -179,6 +179,53 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5937314405597999359, guid: 177fff14edb8a654f9f38c190c7a47db,
+        type: 3}
+      propertyPath: PiecePrefabs.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5937314405597999359, guid: 177fff14edb8a654f9f38c190c7a47db,
+        type: 3}
+      propertyPath: PiecePrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 4729470629056627054, guid: ce6f1046586c1dd4b95ef312f8af7f48,
+        type: 3}
+    - target: {fileID: 5937314405597999359, guid: 177fff14edb8a654f9f38c190c7a47db,
+        type: 3}
+      propertyPath: PiecePrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 6105559475912934683, guid: 72771541b1a632640b157dd051c3a2b5,
+        type: 3}
+    - target: {fileID: 5937314405597999359, guid: 177fff14edb8a654f9f38c190c7a47db,
+        type: 3}
+      propertyPath: PiecePrefabs.Array.data[4]
+      value: 
+      objectReference: {fileID: 5838240362645950585, guid: a896bc32a079bc44dbdbcdfcd55d414c,
+        type: 3}
+    - target: {fileID: 5937314405597999359, guid: 177fff14edb8a654f9f38c190c7a47db,
+        type: 3}
+      propertyPath: PiecePrefabs.Array.data[5]
+      value: 
+      objectReference: {fileID: 2874327592133892410, guid: 7ccc28a79c4dc7840a65298371147875,
+        type: 3}
+    - target: {fileID: 5937314405597999359, guid: 177fff14edb8a654f9f38c190c7a47db,
+        type: 3}
+      propertyPath: PiecePrefabs.Array.data[6]
+      value: 
+      objectReference: {fileID: 2668654044168066526, guid: 164d31d04c315ab49a94d66083bcd551,
+        type: 3}
+    - target: {fileID: 5937314405597999359, guid: 177fff14edb8a654f9f38c190c7a47db,
+        type: 3}
+      propertyPath: PiecePrefabs.Array.data[7]
+      value: 
+      objectReference: {fileID: 2668654044168066526, guid: 164d31d04c315ab49a94d66083bcd551,
+        type: 3}
+    - target: {fileID: 5937314405597999359, guid: 177fff14edb8a654f9f38c190c7a47db,
+        type: 3}
+      propertyPath: PiecePrefabs.Array.data[8]
+      value: 
+      objectReference: {fileID: 2668654044168066526, guid: 164d31d04c315ab49a94d66083bcd551,
+        type: 3}
     - target: {fileID: 8682896746201973004, guid: 177fff14edb8a654f9f38c190c7a47db,
         type: 3}
       propertyPath: Rotate
@@ -274,53 +321,11 @@ PrefabInstance:
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[12].x
       value: 6.5
       objectReference: {fileID: 0}
-    - target: {fileID: 5937314405597999359, guid: 177fff14edb8a654f9f38c190c7a47db,
+    - target: {fileID: 2064288685719015923, guid: 177fff14edb8a654f9f38c190c7a47db,
         type: 3}
-      propertyPath: PiecePrefabs.Array.size
-      value: 8
+      propertyPath: m_Offset.y
+      value: -5.5
       objectReference: {fileID: 0}
-    - target: {fileID: 5937314405597999359, guid: 177fff14edb8a654f9f38c190c7a47db,
-        type: 3}
-      propertyPath: PiecePrefabs.Array.data[2]
-      value: 
-      objectReference: {fileID: 4729470629056627054, guid: ce6f1046586c1dd4b95ef312f8af7f48,
-        type: 3}
-    - target: {fileID: 5937314405597999359, guid: 177fff14edb8a654f9f38c190c7a47db,
-        type: 3}
-      propertyPath: PiecePrefabs.Array.data[3]
-      value: 
-      objectReference: {fileID: 6105559475912934683, guid: 72771541b1a632640b157dd051c3a2b5,
-        type: 3}
-    - target: {fileID: 5937314405597999359, guid: 177fff14edb8a654f9f38c190c7a47db,
-        type: 3}
-      propertyPath: PiecePrefabs.Array.data[4]
-      value: 
-      objectReference: {fileID: 5838240362645950585, guid: a896bc32a079bc44dbdbcdfcd55d414c,
-        type: 3}
-    - target: {fileID: 5937314405597999359, guid: 177fff14edb8a654f9f38c190c7a47db,
-        type: 3}
-      propertyPath: PiecePrefabs.Array.data[5]
-      value: 
-      objectReference: {fileID: 2874327592133892410, guid: 7ccc28a79c4dc7840a65298371147875,
-        type: 3}
-    - target: {fileID: 5937314405597999359, guid: 177fff14edb8a654f9f38c190c7a47db,
-        type: 3}
-      propertyPath: PiecePrefabs.Array.data[6]
-      value: 
-      objectReference: {fileID: 2668654044168066526, guid: 164d31d04c315ab49a94d66083bcd551,
-        type: 3}
-    - target: {fileID: 5937314405597999359, guid: 177fff14edb8a654f9f38c190c7a47db,
-        type: 3}
-      propertyPath: PiecePrefabs.Array.data[7]
-      value: 
-      objectReference: {fileID: 2668654044168066526, guid: 164d31d04c315ab49a94d66083bcd551,
-        type: 3}
-    - target: {fileID: 5937314405597999359, guid: 177fff14edb8a654f9f38c190c7a47db,
-        type: 3}
-      propertyPath: PiecePrefabs.Array.data[8]
-      value: 
-      objectReference: {fileID: 2668654044168066526, guid: 164d31d04c315ab49a94d66083bcd551,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 177fff14edb8a654f9f38c190c7a47db, type: 3}
 --- !u!1001 &738781928
@@ -497,7 +502,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -554,7 +559,7 @@ PrefabInstance:
     - target: {fileID: 1665406127823919073, guid: 9c07097b1823eca4a85ace4c5a533ad5,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1665406127823919073, guid: 9c07097b1823eca4a85ace4c5a533ad5,
         type: 3}

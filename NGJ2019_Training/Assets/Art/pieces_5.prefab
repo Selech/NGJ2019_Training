@@ -96,7 +96,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 4
   m_LinearDrag: 0
-  m_AngularDrag: 10
+  m_AngularDrag: 0
   m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: 0502871c9fd9d47489f255dbeb6ca098, type: 2}
   m_Interpolate: 1
@@ -150,4 +150,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 4
   PlayerController: {fileID: 0}
+  ExpectedAngle: 0
   OverlapFactor: 0.01
+  PrevPosition: {x: 0, y: 0, z: 0}
+  PrevRotation: 0
+  PrevVelocity: {x: 0, y: 0}
+  PrevAngularVelocity: 0
