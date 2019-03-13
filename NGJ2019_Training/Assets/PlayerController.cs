@@ -25,6 +25,8 @@ public class PlayerController : GameControllerCommunicator
     public bool BoxInside = false;
     private int timer;
 
+    public bool EntangledEnabled = false;
+
     private int movePieceInterval = 8;
 
     private float LeftBorder;
@@ -47,13 +49,18 @@ public class PlayerController : GameControllerCommunicator
         CurrentPiece = Spawner.SpawnNew(this);
     }
 
-    public override void FuckMeUp()
+    public override void IncreaseSize()
     {
         CurrentPiece.transform.localScale *= 2;
         CurrentPiece.GetComponent<Rigidbody2D>().mass *= 2;
     }
 
-    public void PlayerFinished()
+    public override void Entangle()
+    {
+	    EntangledEnabled = true;
+    }
+
+	public void PlayerFinished()
     {
 
         if (!IsFinished)
@@ -140,19 +147,31 @@ public class PlayerController : GameControllerCommunicator
 
         if (Input.GetKeyDown(Offense))
         {
-            Controller.UsePower(this.GetComponent<GameControllerCommunicator>());
+            Controller.UseOffensePower(this.GetComponent<GameControllerCommunicator>());
         }
 
         if (Input.GetKeyDown(Defense))
         {
-            Controller.UsePower(this.GetComponent<GameControllerCommunicator>());
+            Controller.UseDefensePower(this.GetComponent<GameControllerCommunicator>());
         }
     }
 
     public bool HasWon { get; set; }
 
-    public void TetrominoCollided()
+    public void TetrominoCollided(Collision2D collision)
     {
+
+	    if (collision != null)
+	    {
+		    if (EntangledEnabled)
+		    {
+			    Destroy(CurrentPiece.GetComponent<Rigidbody2D>());
+				CurrentPiece.transform.parent = collision.gameObject.transform;
+				EntangledEnabled = false;
+		    }
+
+		}
+
         CurrentPiece.GetComponent<Rigidbody2D>().gravityScale = 1f;
         foreach (var tetrominoScript in Pieces)
         {

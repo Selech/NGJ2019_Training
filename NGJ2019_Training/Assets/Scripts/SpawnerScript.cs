@@ -35,6 +35,7 @@ public class SpawnerScript : GameControllerCommunicator
 		NextPiece = PiecePrefabs[index];
 
 		go.transform.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
+		go.transform.GetComponent<Rigidbody2D>().freezeRotation = false;
 		HighlightScript.Target = go.GetComponent<TetrominoScript>();
 		return go;
 	}

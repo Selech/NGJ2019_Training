@@ -52,7 +52,7 @@ public class TetrominoScript : MonoBehaviour
     {
         if (!HasCollided)
         {
-            PlayerController.TetrominoCollided();
+            PlayerController.TetrominoCollided(collision);
             this.gameObject.layer = LayerMask.NameToLayer("Tetromino");
             HasCollided = true;
         }
@@ -123,7 +123,7 @@ public class TetrominoScript : MonoBehaviour
         {
             //rigidbody2d.mass = 500f;
             rigidbody2d.bodyType = RigidbodyType2D.Dynamic;
-            PlayerController.TetrominoCollided();
+            PlayerController.TetrominoCollided(null);
             hasCalledCollided = true;
             this.gameObject.layer = LayerMask.NameToLayer("Tetromino");
         }

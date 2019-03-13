@@ -21,19 +21,24 @@ public class GameController : MonoBehaviour
         
     }
 
-	public void UsePower(GameControllerCommunicator user)
+	public void UseDefensePower(GameControllerCommunicator user)
+	{
+		user.Entangle();
+	}
+
+	public void UseOffensePower(GameControllerCommunicator user)
 	{
 		foreach (var item in communicationObjects)
 		{
-			if(item.GetComponent<PlayerController>() != null && item.GetInstanceID() != user.GetInstanceID())
+			if (item.GetComponent<PlayerController>() != null && item.GetInstanceID() != user.GetInstanceID())
 			{
-				item.FuckMeUp();
+				item.IncreaseSize();
 			}
 		}
 	}
 
 
-    private IEnumerator StartGameStartCountDown()
+	private IEnumerator StartGameStartCountDown()
     {
         print("Game starting in " + StartTimeCountDownFrom + " seconds");
         yield return new WaitForSeconds(StartTimeCountDownFrom);
